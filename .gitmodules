@@ -136,3 +136,6 @@
 [submodule "bundle/vim-twig"]
 	path = bundle/vim-twig
 	url = https://github.com/evidens/vim-twig.git
+[submodule "bundle/bundle/drupalvim"]
+	path = bundle/bundle/drupalvim
+	url = http://git.drupal.org/project/vimrc.git

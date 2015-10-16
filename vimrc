@@ -1,4 +1,5 @@
 " Pathogen plugin manager
+execute pathogen#infect('~/.vim/bundle/drupalvim/bundle/{}')
 execute pathogen#infect()
 
 " BASICS
