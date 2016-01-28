@@ -403,13 +403,7 @@ let g:used_javascript_libs = 'jquery'
 " ------ Dash ------
 :nmap <silent> <leader>d <Plug>DashSearch
 
-" ----- Powerline -----
-set rtp+=/Users/alex/Library/Python/2.7/lib/python/site-packages/powerline/bindings/vim
 
-let g:minBufExplForceSyntaxEnable = 1
-python from powerline.vim import setup as powerline_setup
-python powerline_setup()
-python del powerline_setup
 
 if ! has('gui_running')
   set ttimeoutlen=10
