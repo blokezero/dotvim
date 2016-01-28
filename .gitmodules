@@ -24,7 +24,7 @@
 	url = https://github.com/Raimondi/delimitMate.git
 [submodule "bundle/drupal-snippets"]
 	path = bundle/drupal-snippets
-	url = git://github.com/technosophos/drupal-snippets.git
+	url = https://github.com/technosophos/drupal-snippets.git
 [submodule "bundle/greplace.vim"]
 	path = bundle/greplace.vim
 	url = https://github.com/vim-scripts/greplace.vim.git
@@ -57,7 +57,7 @@
 	url = https://github.com/NLKNguyen/papercolor-theme.git
 [submodule "bundle/PHP-Indenting-for-VIm"]
 	path = bundle/PHP-Indenting-for-VIm
-	url = git@github.com:2072/PHP-Indenting-for-VIm.git
+	url = https://github.com/2072/PHP-Indenting-for-VIm.git
 [submodule "bundle/php.vim-html-enhanced"]
 	path = bundle/php.vim-html-enhanced
 	url = https://github.com/vim-scripts/php.vim-html-enhanced.git
@@ -96,7 +96,7 @@
 	url = https://github.com/terryma/vim-expand-region.git
 [submodule "bundle/vim-fugitive"]
 	path = bundle/vim-fugitive
-	url = git://github.com/tpope/vim-fugitive.git
+	url = https://github.com/tpope/vim-fugitive.git
 [submodule "bundle/vim-gitgutter"]
 	path = bundle/vim-gitgutter
 	url = https://github.com/airblade/vim-gitgutter.git
@@ -120,10 +120,10 @@
 	url = https://github.com/honza/vim-snippets.git
 [submodule "bundle/vim-surround"]
 	path = bundle/vim-surround
-	url = git://github.com/tpope/vim-surround.git
+	url = https://github.com/tpope/vim-surround.git
 [submodule "bundle/vim-syntax-for-PHP"]
 	path = bundle/vim-syntax-for-PHP
-	url = git@github.com:2072/vim-syntax-for-PHP.git
+	url = https://github.com/2072/vim-syntax-for-PHP.git
 [submodule "bundle/vim-tagbar-css"]
 	path = bundle/vim-tagbar-css
 	url = https://github.com/mtscout6/vim-tagbar-css.git
