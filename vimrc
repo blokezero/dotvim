@@ -1,6 +1,7 @@
 " Pathogen plugin manager
 execute pathogen#infect('~/.vim/bundle/drupalvim/bundle/{}')
 execute pathogen#infect()
+call pathogen#helptags()
 
 " BASICS
 
@@ -13,7 +14,7 @@ set background=dark
 "set background=light
 "colorscheme scheakur
 colorscheme base16-solarized
-
+let base16colorspace=256
 
 " Tabs, Spaces and Indentation.
 set expandtab     " Use spaces for tabs.
@@ -21,6 +22,9 @@ set tabstop=2     " Number of spaces to use for tabs.
 set shiftwidth=2  " Number of spaces to autoindent.
 set softtabstop=2 " Number of spaces for a tab.
 set autoindent    " Set autoindenting on.
+" Don't loose visual selection after indenting with arrow keys.
+vnoremap > >gv
+vnoremap < <gv
 
 " WIDTH
 "set textwidth=80
@@ -177,6 +181,8 @@ if executable('ag')
   " ag is fast enough that CtrlP doesn't need to cache
   let g:ctrlp_use_caching = 0
 endif
+
+"
 
 " FILE TYPE
 filetype plugin indent on
@@ -368,10 +374,10 @@ autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
 " Enable heavy omni completion.
-if !exists('g:neocomplete#sources#omni#input_patterns')
-  let g:neocomplete#sources#omni#input_patterns = {}
-endif
-let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
+"if !exists('g:neocomplete#sources#omni#input_patterns')
+  "let g:neocomplete#sources#omni#input_patterns = {}
+"endif
+"let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
 
 " END Neocomplete
 
@@ -395,18 +401,24 @@ xmap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 let g:neosnippet#enable_snipmate_compatibility = 1
 let g:neosnippet#snippets_directory='~/.vim/bundle/drupal-snippets'
 
-let g:minBufExplForceSyntaxEnable = 1
-
 " javascript libraries syntax
 let g:used_javascript_libs = 'jquery'
 
 " ------ Dash ------
 :nmap <silent> <leader>d <Plug>DashSearch
 
+" ----- MinBufExplorer ------
+map <Leader>mbe :MBEOpen<cr>
+map <Leader>mbc :MBEClose<cr>
+map <Leader>mbt :MBEToggle<cr>
+
+let g:minBufExplForceSyntaxEnable = 1
+let g:miniBufExplModSelTarget = 1
+nmap <Plug>MiniBufExpl-Mapping-o <Plug>MiniBufExpl-Mapping-o
+
 " ----- Powerline -----
 set rtp+=/Users/alex/Library/Python/2.7/lib/python/site-packages/powerline/bindings/vim
 
-let g:minBufExplForceSyntaxEnable = 1
 python from powerline.vim import setup as powerline_setup
 python powerline_setup()
 python del powerline_setup
