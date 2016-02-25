@@ -43,7 +43,7 @@ set number        " Line numbers on.
 set showcmd       " Shows the command in the last line of the screen.
 set autoread      " Read files when they've been changed outside of Vim.
 set autowrite     " Automatically :write before running commands
-
+set encoding=utf-8" Necessary to show Unicode glyphs
 " WHITESPACE
 " Strip trailing whitespace on save,
 autocmd BufWritePre * :%s/\s\+$//e
@@ -237,15 +237,8 @@ map <C-n> :NERDTreeToggle<CR>   " Ctrl-n opens nerdtree.
 " ----- CTRL-P -----
 map <C-t> :CtrlPBuffer<CR>
 
-" ----- tpope/SYNTASTIC settings -----
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
 
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 1
-let g:syntastic_mode_map = { 'mode': 'active', 'active_filetypes': [], 'passive_filetypes': ['html'] }
+
 
 " ----- tpope/fugitive settings -----
 set statusline+=%{fugitive#statusline()}
@@ -263,6 +256,7 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+let g:syntastic_mode_map = { 'mode': 'active', 'active_filetypes': [], 'passive_filetypes': ['html'] }
 
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
@@ -414,7 +408,16 @@ if ! has('gui_running')
   augroup END
 endif
 
+" ---- Airline ----
+let g:airline_powerline_fonts = 1
 set laststatus=2 " Always display the statusline in all windows
 set guifont=Inconsolata\ for\ Powerline:h16
 set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusline)
 
+" ---- Ack search ----
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep'
+endif
+
+" ---- Markdown preview ----
+let vim_markdown_preview_hotkey='<C-m>'
