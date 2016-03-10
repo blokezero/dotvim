@@ -1,6 +1,5 @@
 " Pathogen plugin manager
-execute pathogen#infect('~/.vim/bundle/drupalvim/bundle/{}')
-execute pathogen#infect()
+execute pathogen#infect('bundle/{}', '~/.vim/bundle/drupalvim/bundle/{}')
 call pathogen#helptags()
 
 " BASICS
@@ -261,6 +260,7 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_mode_map = { 'mode': 'active', 'active_filetypes': [], 'passive_filetypes': ['html'] }
+"let g:syntastic_scss_checkers = ['scss_lint']
 
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
