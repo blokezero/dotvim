@@ -165,7 +165,7 @@ set smartcase
 " // Will copy selected text and search for it.
 vnoremap // y/<C-R>"<CR>"
 " :C clears search highlighting
-:command C let @/=""
+:command! C let @/=""
 
 set wildmode=longest:full,list:full
 
@@ -185,7 +185,7 @@ endif
 filetype plugin indent on
 syntax enable
 
-augroup vimrcEx
+augroup alex
   autocmd!
 
   " When editing a file, always jump to the last known cursor position.
@@ -207,6 +207,7 @@ augroup vimrcEx
 
   " Automatically wrap at 80 characters for Markdown
   autocmd BufRead,BufNewFile *.md setlocal textwidth=80
+  autocmd FileType markdown setlocal textwidth=80
 
   " Automatically wrap at 72 characters and spell check git commit messages
   autocmd FileType gitcommit setlocal textwidth=72
@@ -214,6 +215,10 @@ augroup vimrcEx
 
   " Allow stylesheets to autocomplete hyphenated words
   autocmd FileType css,scss,sass,js setlocal iskeyword+=-
+
+  " Fix annoying shiftwidth from php indent bundle
+  autocmd FileType php setlocal shiftwidth=2
+
 augroup END
 
 " Always use vertical diffs
@@ -259,7 +264,7 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
-let g:syntastic_mode_map = { 'mode': 'active', 'active_filetypes': [], 'passive_filetypes': ['html'] }
+let g:syntastic_mode_map = { 'mode': 'active', 'active_filetypes': [], 'passive_filetypes': ['html','sass', 'scss', 'css'] }
 "let g:syntastic_scss_checkers = ['scss_lint']
 
 set statusline+=%#warningmsg#
@@ -345,24 +350,24 @@ function! s:my_cr_function()
   return pumvisible() ? neocomplete#close_popup() : "\<CR>"
 endfunction
 " <TAB>: completion.
-"inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 " <C-h>, <BS>: close popup and delete backword char.
 inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
 inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
 inoremap <expr><C-y>  neocomplete#close_popup()
 inoremap <expr><C-e>  neocomplete#cancel_popup()
 " Close popup by <Space>.
-"inoremap <expr><Space> pumvisible() ? neocomplete#close_popup() : "\<Space>"
-
+inoremap <expr><Space> pumvisible() ? "\<C-e>\<Space>" : "\<Space>"
 
 " AutoComplPop like behavior.
-let g:neocomplete#enable_auto_select = 1
+"let g:neocomplete#enable_auto_select = 1
 
 " Enable omni completion.
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+autocmd FileType php setlocal omnifunc=phpcomplete_extended#CompletePHP
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
 " Enable heavy omni completion.
