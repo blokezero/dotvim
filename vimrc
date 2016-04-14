@@ -1,5 +1,5 @@
 " Pathogen plugin manager
-execute pathogen#infect('bundle/{}', '~/.vim/bundle/drupalvim/bundle/{}')
+execute pathogen#infect('~/.drush/vimrc/bundle/{}', 'bundle/{}')
 call pathogen#helptags()
 
 " BASICS
@@ -197,7 +197,6 @@ augroup alex
     \ endif
 
   " Set syntax highlighting for specific file types
-  autocmd BufRead,BufNewFile Appraisals set filetype=ruby
   autocmd BufRead,BufNewFile *.md set filetype=markdown
   autocmd BufNewFile,BufRead *.scss set ft=scss
   autocmd BufNewFile,BufRead *.{module,install} set filetype=php.drupal
@@ -235,27 +234,22 @@ inoremap <M-Space> <C-x><C-o>
 " ----- BUNDLE SPECIFIC SETTINGS -----
 
 " ----- NERDTree -----
-
-"autocmd VimEnter * NERDTree    "Autostart NERDTree on VIM start.
-let NERDTreeShowHidden=1        " Show hidden files in NERDTree.
+" Open nerdtree on start up
+"autocmd VimEnter * NERDTree
+"autocmd BufEnter * NERDTreeMirror
+" Jump into main window, if no file then NERDTree!
+"autocmd VimEnter * wincmd w
+" Show dot files.
+"let NERDTreeShowHidden=1
 " Hide a few folders
-let NERDTreeIgnore=['.DS_Store', '.codekit-cache', '.sass-cache']
-map <C-n> :NERDTreeToggle<CR>   " Ctrl-n opens nerdtree.
+"let NERDTreeIgnore=['.DS_Store', '.codekit-cache', '.sass-cache']
+"map <C-n> :NERDreeToggle<CR>    Ctrl-n opens nerdtree.
 
-" ----- CTRL-P -----
+ "----- CTRL-P -----
 map <C-t> :CtrlPBuffer<CR>
-
-
-
 
 " ----- tpope/fugitive settings -----
 set statusline+=%{fugitive#statusline()}
-
-" ----- jistr/vim-nerdtree-tabs -----
-" Open/close NERDTree Tabs with \t
-"nmap <silent> <leader>t :NERDTreeTabsToggle<CR>
-" To not have NERDTree tabs always open on startup
-let g:nerdtree_tabs_open_on_console_startup = 0
 
 " ----- scrooloose/syntastic settings -----
 let g:syntastic_error_symbol = '✘'
@@ -284,7 +278,7 @@ let g:easytags_resolve_links = 1
 
 " ----- majutsushi/tagbar settings -----
 " Open/close tagbar with [SPACE] b
-nmap <silent> <leader>b :TagbarToggle<CR>
+nmap <silent> <leader>t :TagbarToggle<CR>
 " Uncomment to open tagbar automatically whenever possible
 "autocmd BufEnter * nested :call tagbar#autoopen(0)
 
@@ -311,7 +305,6 @@ augroup END
 
 " ----- HTML tidy -----
 vmap ,x :!tidy -q -i --show-errors 0<CR>
-
 
 " ----- Neocomplete -----
 " Disable AutoComplPop.
@@ -378,7 +371,6 @@ let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
 
 " END Neocomplete
 
-
 " ----- Neosnippet -----
 " Plugin key-mappings.
 imap <C-k>     <Plug>(neosnippet_expand_or_jump)
@@ -401,19 +393,24 @@ let g:neosnippet#snippets_directory='~/.vim/bundle/drupal-snippets'
 " javascript libraries syntax
 let g:used_javascript_libs = 'jquery'
 
+" ----- FastFold -----
+let g:tex_fold_enabled=1
+let g:vimsyn_folding='af'
+let g:xml_syntax_folding = 1
+let g:php_folding = 1
+
 " ------ Dash ------
 :nmap <silent> <leader>d <Plug>DashSearch
 
-
-
-if ! has('gui_running')
-  set ttimeoutlen=10
-  augroup FastEscape
-    autocmd!
-    au InsertEnter * set timeoutlen=0
-    au InsertLeave * set timeoutlen=1000
-  augroup END
-endif
+" What is this?
+"if ! has('gui_running')
+  "set ttimeoutlen=10
+  "augroup FastEscape
+    "autocmd!
+    "au InsertEnter * set timeoutlen=0
+    "au InsertLeave * set timeoutlen=1000
+  "augroup END
+"endif
 
 " ---- Airline ----
 let g:airline_powerline_fonts = 1
@@ -428,3 +425,8 @@ endif
 
 " ---- Markdown preview ----
 let vim_markdown_preview_hotkey='<C-m>'
+
+" Unite
+
+" Vimfiler
+let g:vimfiler_as_default_explorer = 1
