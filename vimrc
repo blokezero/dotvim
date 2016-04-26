@@ -91,7 +91,7 @@ let mapleader = "\<Space>"
 " BUFFERS
 set hidden                      " Allow buffer to be hidden if modified.
 
-nmap <leader>B :enew<cr>            " To open a new empty buffer
+"nmap <leader>B :enew<cr>            " To open a new empty buffer
 nmap <leader>l :bnext<CR>           " Move to the next buffer
 nmap <leader>h :bprevious<CR>       " Move to the previous buffer
 nnoremap <leader><leader> <c-^>     " Switch between the last two files
@@ -146,16 +146,21 @@ set nobackup " Don't backup files.
 set writebackup
 set noswapfile
 
+" NETRW
+let g:netrw_liststyle=3
+map <C-n> :Ex<cr>
+let g:netrw_list_hide= netrw_gitignore#Hide()
+
 " SPLITS AND WINDOWS
 " Open new split panes to right and bottom, which feels more natural
 set splitbelow
 set splitright
 
 " Quicker window movement
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-h> <C-w>h
-nnoremap <C-l> <C-w>l
+"nnoremap <C-j> <C-w>j
+"nnoremap <C-k> <C-w>k
+"nnoremap <C-h> <C-w>h
+"nnoremap <C-l> <C-w>l
 
 " SEARCH
 set hlsearch
@@ -417,6 +422,8 @@ let g:airline_powerline_fonts = 1
 set laststatus=2 " Always display the statusline in all windows
 set guifont=Inconsolata\ for\ Powerline:h16
 set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusline)
+let g:airline#extensions#tabline#enabled = 0
+let g:airline#extensions#bufferline#enabled = 0
 
 " ---- Ack search ----
 if executable('ag')
