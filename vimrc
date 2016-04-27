@@ -47,6 +47,7 @@ set showcmd       " Shows the command in the last line of the screen.
 set autoread      " Read files when they've been changed outside of Vim.
 set autowrite     " Automatically :write before running commands
 set encoding=utf-8" Necessary to show Unicode glyphs
+
 " WHITESPACE
 " Strip trailing whitespace on save,
 autocmd BufWritePre * :%s/\s\+$//e
