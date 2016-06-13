@@ -394,7 +394,7 @@ xmap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 
 " Enable snipMate compatibility feature.
 let g:neosnippet#enable_snipmate_compatibility = 1
-let g:neosnippet#snippets_directory='~/.vim/bundle/drupal-snippets'
+let g:neosnippet#snippets_directory='~/.vim/bundle/drupal-snippets,~/.vim/bundle/neosnippet-snippets/neosnippets'
 
 " javascript libraries syntax
 let g:used_javascript_libs = 'jquery'
@@ -434,7 +434,8 @@ endif
 " ---- Markdown preview ----
 let vim_markdown_preview_hotkey='<C-m>'
 
-" Unite
-
-" Vimfiler
-let g:vimfiler_as_default_explorer = 1
+" ---- Ag search -----
+" Use :Ag
+" https://github.com/rking/ag.vim
+" Use project root directory for search
+let g:ag_working_path_mode="r"
