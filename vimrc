@@ -394,7 +394,7 @@ xmap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 
 " Enable snipMate compatibility feature.
 let g:neosnippet#enable_snipmate_compatibility = 1
-let g:neosnippet#snippets_directory='~/.vim/bundle/drupal-snippets,~/.vim/bundle/neosnippet-snippets/neosnippets'
+let g:neosnippet#snippets_directory='~/.vim/bundle/drupal-snippets,~/.vim/bundle/neosnippet-snippets/neosnippets,~/.vim/bundle/twig.vim/neosnippets'
 
 " javascript libraries syntax
 let g:used_javascript_libs = 'jquery'
@@ -408,24 +408,70 @@ let g:php_folding = 1
 " ------ Dash ------
 :nmap <silent> <leader>d <Plug>DashSearch
 
-" What is this?
-"if ! has('gui_running')
-  "set ttimeoutlen=10
-  "augroup FastEscape
-    "autocmd!
-    "au InsertEnter * set timeoutlen=0
-    "au InsertLeave * set timeoutlen=1000
-  "augroup END
-"endif
 
-" ---- Airline ----
-let g:airline_powerline_fonts = 1
-set laststatus=2 " Always display the statusline in all windows
-set guifont=Inconsolata\ for\ Powerline:h16
-set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusline)
-let g:airline#extensions#tabline#enabled = 0
-let g:airline#extensions#bufferline#enabled = 0
+" ------ lightline ------
+set laststatus=2
+set noshowmode
 
+let g:lightline = {
+      \ 'mode_map': { 'c': 'NORMAL' },
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ] ]
+      \ },
+      \ 'component_function': {
+      \   'modified': 'LightLineModified',
+      \   'readonly': 'LightLineReadonly',
+      \   'fugitive': 'LightLineFugitive',
+      \   'filename': 'LightLineFilename',
+      \   'fileformat': 'LightLineFileformat',
+      \   'filetype': 'LightLineFiletype',
+      \   'fileencoding': 'LightLineFileencoding',
+      \   'mode': 'LightLineMode',
+      \ },
+      \ 'separator': { 'left': '⮀', 'right': '⮂' },
+      \ 'subseparator': { 'left': '⮁', 'right': '⮃' }
+      \ }
+
+function! LightLineModified()
+  return &ft =~ 'help\|vimfiler\|gundo' ? '' : &modified ? '+' : &modifiable ? '' : '-'
+endfunction
+
+function! LightLineReadonly()
+  return &ft !~? 'help\|vimfiler\|gundo' && &readonly ? '⭤' : ''
+endfunction
+
+function! LightLineFilename()
+  return ('' != LightLineReadonly() ? LightLineReadonly() . ' ' : '') .
+        \ (&ft == 'vimfiler' ? vimfiler#get_status_string() :
+        \  &ft == 'unite' ? unite#get_status_string() :
+        \  &ft == 'vimshell' ? vimshell#get_status_string() :
+        \ '' != expand('%:t') ? expand('%:t') : '[No Name]') .
+        \ ('' != LightLineModified() ? ' ' . LightLineModified() : '')
+endfunction
+
+function! LightLineFugitive()
+  if &ft !~? 'vimfiler\|gundo' && exists("*fugitive#head")
+    let branch = fugitive#head()
+    return branch !=# '' ? '⭠ '.branch : ''
+  endif
+  return ''
+endfunction
+
+function! LightLineFileformat()
+  return winwidth(0) > 70 ? &fileformat : ''
+endfunction
+
+function! LightLineFiletype()
+  return winwidth(0) > 70 ? (&filetype !=# '' ? &filetype : 'no ft') : ''
+endfunction
+
+function! LightLineFileencoding()
+  return winwidth(0) > 70 ? (&fenc !=# '' ? &fenc : &enc) : ''
+endfunction
+
+function! LightLineMode()
+  return winwidth(0) > 60 ? lightline#mode() : ''
+endfunction
 " ---- Ack search ----
 if executable('ag')
   let g:ackprg = 'ag --vimgrep'
