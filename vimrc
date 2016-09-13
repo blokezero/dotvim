@@ -253,7 +253,14 @@ inoremap <M-Space> <C-x><C-o>
 
  "----- CTRL-P -----
 map <C-t> :CtrlPBuffer<CR>
-
+set wildignore+=*.zip                                       " ctrlp - ignore .zip files
+set wildignore+=*.pdf                                       " ctrlp - ignore .pdf files
+set wildignore+=*/node_modules/*                            " ctrlp - ignore node modules
+set wildignore+=node_modules/*                            " ctrlp - ignore node modules
+set wildignore+=*/bower_components/*                        " ctrlp - ignore bower components
+set wildignore+=bower_components/*                        " ctrlp - ignore bower components
+set wildignore+=*/dist/*                                    " ctrlp - ignore grunt build directory
+let g:ctrlp_regexp = 1                                      " ctrlp - use regexp matching
 " ----- tpope/fugitive settings -----
 set statusline+=%{fugitive#statusline()}
 
@@ -366,8 +373,11 @@ autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-autocmd FileType php setlocal omnifunc=phpcomplete_extended#CompletePHP
+"autocmd FileType php setlocal omnifunc=phpcomplete_extended#CompletePHP
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+
+autocmd FileType php setlocal omnifunc=phpcomplete#CompletePHP
+set completeopt=longest,menuone
 
 " Enable heavy omni completion.
 if !exists('g:neocomplete#sources#omni#input_patterns')
