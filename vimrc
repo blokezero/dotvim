@@ -225,7 +225,7 @@ augroup alex
   autocmd FileType php setlocal shiftwidth=2
 
 augroup END
-
+set iskeyword+=-
 " Always use vertical diffs
 set diffopt+=vertical
 
@@ -287,7 +287,7 @@ let g:easytags_events = ['BufReadPost', 'BufWritePost']
 let g:easytags_async = 1
 "let g:easytags_dynamic_files = 2
 let g:easytags_resolve_links = 1
-"let g:easytags_suppress_ctags_warning = 1
+let g:easytags_suppress_ctags_warning = 1
 
 " ----- majutsushi/tagbar settings -----
 " Open/close tagbar with [SPACE] b
@@ -402,9 +402,12 @@ xmap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 \ "\<Plug>(neosnippet_expand_or_jump)"
 \: "\>"
 
+" Delete markers on leaving insert mode
+autocmd InsertLeave * NeoSnippetClearMarkers
+
 " Enable snipMate compatibility feature.
 let g:neosnippet#enable_snipmate_compatibility = 1
-let g:neosnippet#snippets_directory='~/.vim/bundle/drupal-snippets,~/.vim/bundle/neosnippet-snippets/neosnippets,~/.vim/bundle/twig.vim/neosnippets'
+let g:neosnippet#snippets_directory='~/.vim/bundle/drupal-snippets,~/.vim/bundle/neosnippet-snippets/neosnippets,~/.vim/bundle/twig.vim/neosnippets,~/.vim/snippets/'
 
 " javascript libraries syntax
 let g:used_javascript_libs = 'jquery'
