@@ -172,3 +172,6 @@
 [submodule "bundle/vim-css"]
 	path = bundle/vim-css
 	url = https://github.com/lepture/vim-css.git
+[submodule "bundle/vifm.vim"]
+	path = bundle/vifm.vim
+	url = https://github.com/vifm/vifm.vim.git
