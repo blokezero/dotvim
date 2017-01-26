@@ -138,6 +138,11 @@ vmap <Leader>P "+P
 " Replace selected text with register on 'r' without copying into register.
 vmap r "_dP"
 
+" Quick insert mode commands
+"inoremap II <Esc>I
+"inoremap AA <Esc>A
+"inoremap OO <Esc>O
+
 " Use matchtime and showmatch together.
 set matchtime=2 " Time to show matching parent in 10ths of a sec.
 set showmatch " Show matching parents.
@@ -190,7 +195,28 @@ endif
 " FILE TYPE
 filetype plugin indent on
 syntax enable
+filetype plugin on
+syntax on
 
+" LANGUAGES
+
+" Python
+" Indentation
+au BufNewFile,BufRead *.py
+    \ set tabstop=4 |
+    \ set softtabstop=4 |
+    \ set shiftwidth=4 |
+    \ set textwidth=79 |
+    \ set expandtab |
+    \ set autoindent |
+    \ set fileformat=unix
+
+let python_highlight_all=1
+
+" PHP
+autocmd FileType php set omnifunc=phpcomplete#CompletePHP
+
+" Autocommand settings
 augroup alex
   autocmd!
 
@@ -498,3 +524,24 @@ let vim_markdown_preview_hotkey='<C-m>'
 " https://github.com/rking/ag.vim
 " Use project root directory for search
 let g:ag_working_path_mode="r"
+
+" ---- VIMWIKI ----
+nmap <silent> <Leader>d :VimwikiToggleListItem<CR>
+
+" ---- VDEBUG ----
+if !exists('g:vdebug_options')
+    let g:vdebug_options = {}
+endif
+let g:vdebug_options['port']=8999 " Avoid conflict with FPM on port 9000
+
+" -- php.vim ----
+
+function! PhpSyntaxOverride()
+  hi! def link phpDocTags  phpDefine
+  hi! def link phpDocParam phpType
+endfunction
+
+augroup phpSyntaxOverride
+  autocmd!
+  autocmd FileType php call PhpSyntaxOverride()
+augroup END

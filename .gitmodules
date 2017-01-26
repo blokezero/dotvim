@@ -175,3 +175,21 @@
 [submodule "bundle/vifm.vim"]
 	path = bundle/vifm.vim
 	url = https://github.com/vifm/vifm.vim.git
+[submodule "bundle/vimwiki.git"]
+	path = bundle/vimwiki.git
+	url = https://github.com/vimwiki/vimwiki.git
+[submodule "bundle/vim-scriptease.git"]
+	path = bundle/vim-scriptease.git
+	url = git://github.com/tpope/vim-scriptease.git
+[submodule "bundle/SimpylFold"]
+	path = bundle/SimpylFold
+	url = https://github.com/tmhedberg/SimpylFold.git
+[submodule "bundle/IndentPython.vim"]
+	path = bundle/IndentPython.vim
+	url = https://github.com/vim-scripts/indentpython.vim.git
+[submodule "bundle/php.vim"]
+	path = bundle/php.vim
+	url = https://github.com/StanAngeloff/php.vim.git
+[submodule "bundle/python-mode.git"]
+	path = bundle/python-mode.git
+	url = https://github.com/klen/python-mode.git
