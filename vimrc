@@ -25,6 +25,9 @@ set autoindent    " Set autoindenting on.
 vnoremap > >gv
 vnoremap < <gv
 
+" Indent guide
+let g:indentLine_char = '│'
+
 " WIDTH
 "set textwidth=80
 "set colorcolumn=+1
@@ -291,18 +294,22 @@ let g:ctrlp_regexp = 1                                      " ctrlp - use regexp
 set statusline+=%{fugitive#statusline()}
 
 " ----- scrooloose/syntastic settings -----
-let g:syntastic_error_symbol = '✘'
-let g:syntastic_warning_symbol = "▲"
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-let g:syntastic_mode_map = { 'mode': 'active', 'active_filetypes': [], 'passive_filetypes': ['html','sass', 'scss', 'css'] }
+"let g:syntastic_error_symbol = '✘'
+"let g:syntastic_warning_symbol = "▲"
+"let g:syntastic_always_populate_loc_list = 1
+"let g:syntastic_auto_loc_list = 1
+"let g:syntastic_check_on_open = 1
+"let g:syntastic_check_on_wq = 0
+"let g:syntastic_mode_map = { 'mode': 'active', 'active_filetypes': [], 'passive_filetypes': ['html','sass', 'scss', 'css'] }
 "let g:syntastic_scss_checkers = ['scss_lint']
 
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+"set statusline+=%#warningmsg#
+"set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%*
+
+" ----- ALE linter settings ------
+nmap <silent> <leader>k <Plug>(ale_previous_wrap)
+nmap <silent> <leader>j <Plug>(ale_next_wrap)
 
 " ----- xolox/vim-easytags settings -----
 " Where to look for tags files
@@ -344,6 +351,9 @@ augroup END
 
 " ----- HTML tidy -----
 vmap ,x :!tidy -q -i --show-errors 0<CR>
+
+" ----- Autocomplete -----
+set complete-=i " don't autocomplete from included files, rely on tags
 
 " ----- Neocomplete -----
 " Disable AutoComplPop.
