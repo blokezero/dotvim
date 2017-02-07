@@ -310,6 +310,9 @@ set statusline+=%{fugitive#statusline()}
 " ----- ALE linter settings ------
 nmap <silent> <leader>k <Plug>(ale_previous_wrap)
 nmap <silent> <leader>j <Plug>(ale_next_wrap)
+let g:ale_sign_column_always = 1
+let g:ale_lint_on_save = 1
+let g:ale_lint_on_text_changed = 0
 
 " ----- xolox/vim-easytags settings -----
 " Where to look for tags files
@@ -476,6 +479,7 @@ let g:lightline = {
       \   'filetype': 'LightLineFiletype',
       \   'fileencoding': 'LightLineFileencoding',
       \   'mode': 'LightLineMode',
+      \   'error': 'ALE',
       \ },
       \ 'separator': { 'left': '⮀', 'right': '⮂' },
       \ 'subseparator': { 'left': '⮁', 'right': '⮃' }
@@ -521,10 +525,10 @@ endfunction
 function! LightLineMode()
   return winwidth(0) > 60 ? lightline#mode() : ''
 endfunction
-" ---- Ack search ----
-if executable('ag')
-  let g:ackprg = 'ag --vimgrep'
-endif
+
+function! ALE()
+  return ALEGetStatusLine()
+endfunction
 
 " ---- Markdown preview ----
 let vim_markdown_preview_hotkey='<C-m>'

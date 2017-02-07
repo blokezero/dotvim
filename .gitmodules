@@ -145,9 +145,6 @@
 [submodule "bundle/bundle/phpcomplete.vim"]
 	path = bundle/bundle/phpcomplete.vim
 	url = git://github.com/shawncplus/phpcomplete.vim.git
-[submodule "bundle/vim-css"]
-	path = bundle/vim-css
-	url = https://github.com/lepture/vim-css.git
 [submodule "bundle/vifm.vim"]
 	path = bundle/vifm.vim
 	url = https://github.com/vifm/vifm.vim.git
