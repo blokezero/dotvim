@@ -1,18 +1,10 @@
-" Pathogen plugin manager
-execute pathogen#infect('~/.drush/vimrc/bundle/{}', 'bundle/{}')
-call pathogen#helptags()
-
 " BASICS
 
 " Use vim defaults.
-set nocompatible
 set timeout timeoutlen=1500
 set t_Co=256
-"colorscheme PaperColor
 set background=dark
-"set background=light
-"colorscheme scheakur
-colorscheme base16-solarized
+colorscheme base16-solarized-dark
 let base16colorspace=256
 
 " Tabs, Spaces and Indentation.
@@ -29,15 +21,16 @@ vnoremap < <gv
 let g:indentLine_char = '│'
 
 " WIDTH
-"set textwidth=80
-"set colorcolumn=+1
+set textwidth=80
+set colorcolumn=+1
+
 " Words Wrap settings
 set wrap
 set linebreak
 set nolist  " list disables linebreak
 set textwidth=0
 
-" NUMBERS
+" LINE NUMBERS
 set number
 set numberwidth=5
 
@@ -45,7 +38,6 @@ set numberwidth=5
 set backspace=2   " Backspace, this is the same as :set
 set ruler         " Show the cursor position.
 set scrolloff=5   " Show 5 lines above/below the cursor when
-set number        " Line numbers on.
 set showcmd       " Shows the command in the last line of the screen.
 set autoread      " Read files when they've been changed outside of Vim.
 set autowrite     " Automatically :write before running commands
@@ -59,8 +51,6 @@ set list listchars=tab:»·,trail:·,nbsp:·
 
 " Bells and whistles.
 set novisualbell
-"set noerrorbells
-"set t_vb=
 
 set history=300 " Number of command lines stored in the history
 
@@ -68,19 +58,12 @@ set title " Set the title in the console.
 
 " ----- KEYS AND MOUSE -----
 
-" Get off my lawn
-"nnoremap <Left> :echoe "Use h"<CR>
-"nnoremap <Right> :echoe "Use l"<CR>
-"nnoremap <Up> :echoe "Use k"<CR>
-"nnoremap <Down> :echoe "Use j"<CR>
-
 " Prevent help popping up catch <F1> instead of
 :nmap <F1> <ESC>
 :map <F1> <ESC>
 :imap <F1> <ESC>
 
-
-" What? We can use a mouse in the terminal?
+" Use mouse
 if has('mouse')
     set mouse=a
     set ttymouse=xterm2
@@ -101,7 +84,6 @@ nmap <leader>h :bprevious<CR>       " Move to the previous buffer
 nnoremap <leader><leader> <c-^>     " Switch between the last two files
 nnoremap <leader>q :bp<cr>:bd #<cr> " \q to close buffer without closing window.
 
-
 " CODE FOLDING SETTINGS
 set foldmethod=syntax " fold based on indent
 set foldnestmax=10 " deepest fold is 10 levels
@@ -115,12 +97,6 @@ highlight SpecialKey ctermbg=none " make the highlighting of tabs less annoying
 set showbreak=↪
 nmap <leader>l :set list!<cr>
 
-" TEXTMATE STYLE INDENTATION
-vmap <leader>[ <gv
-vmap <leader>] >gv
-nmap <leader>[ <<
-nmap <leader>] >>
-
 " TRY TO FIX DISSAPEARING ARROWKEYS
 if &term[:4] == "xterm" || &term[:5] == 'screen' || &term[:3] == 'rxvt'
   inoremap <silent> <C-[>OC <RIGHT>
@@ -129,7 +105,7 @@ endif
 " COPY AND PASTE
 " Paste mode toggle on F2
 set pastetoggle=<F2>
-"
+
 " Copy & paste to system clipboard with <Space>p and <Space>y:
 vmap <Leader>y "+y
 vmap <Leader>D "+d
@@ -140,11 +116,6 @@ vmap <Leader>P "+P
 
 " Replace selected text with register on 'r' without copying into register.
 vmap r "_dP"
-
-" Quick insert mode commands
-"inoremap II <Esc>I
-"inoremap AA <Esc>A
-"inoremap OO <Esc>O
 
 " Use matchtime and showmatch together.
 set matchtime=2 " Time to show matching parent in 10ths of a sec.
@@ -165,17 +136,12 @@ let g:netrw_list_hide= netrw_gitignore#Hide()
 set splitbelow
 set splitright
 
-" Quicker window movement
-"nnoremap <C-j> <C-w>j
-"nnoremap <C-k> <C-w>k
-"nnoremap <C-h> <C-w>h
-"nnoremap <C-l> <C-w>l
-
 " SEARCH
 set hlsearch
 set incsearch
 set ignorecase
 set smartcase
+
 " // Will copy selected text and search for it.
 vnoremap // y/<C-R>"<CR>"
 " :C clears search highlighting
@@ -253,8 +219,11 @@ augroup alex
   " Fix annoying shiftwidth from php indent bundle
   autocmd FileType php setlocal shiftwidth=2
 
+  " Update light line after linting
+  autocmd User ALELint call lightline#update()
+
 augroup END
-set iskeyword+=-
+
 " Always use vertical diffs
 set diffopt+=vertical
 
@@ -266,21 +235,9 @@ set omnifunc=syntaxcomplete#Complete
 " Map autocomplete to [ALT]+[SPACE]
 inoremap <M-Space> <C-x><C-o>
 
-" ----- BUNDLE SPECIFIC SETTINGS -----
+" ----- PACKAGE SPECIFIC SETTINGS -----
 
-" ----- NERDTree -----
-" Open nerdtree on start up
-"autocmd VimEnter * NERDTree
-"autocmd BufEnter * NERDTreeMirror
-" Jump into main window, if no file then NERDTree!
-"autocmd VimEnter * wincmd w
-" Show dot files.
-"let NERDTreeShowHidden=1
-" Hide a few folders
-"let NERDTreeIgnore=['.DS_Store', '.codekit-cache', '.sass-cache']
-"map <C-n> :NERDreeToggle<CR>    Ctrl-n opens nerdtree.
-
- "----- CTRL-P -----
+"----- CTRL-P -----
 map <C-t> :CtrlPBuffer<CR>
 set wildignore+=*.zip                                       " ctrlp - ignore .zip files
 set wildignore+=*.pdf                                       " ctrlp - ignore .pdf files
@@ -308,11 +265,14 @@ set statusline+=%{fugitive#statusline()}
 "set statusline+=%*
 
 " ----- ALE linter settings ------
-nmap <silent> <leader>k <Plug>(ale_previous_wrap)
-nmap <silent> <leader>j <Plug>(ale_next_wrap)
+nmap <silent> <leader>j <Plug>(ale_previous_wrap)
+nmap <silent> <leader>k <Plug>(ale_next_wrap)
 let g:ale_sign_column_always = 1
 let g:ale_lint_on_save = 1
-let g:ale_lint_on_text_changed = 0
+let g:ale_lint_on_text_changed = 1
+let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+let g:ale_statusline_format = ['⨉ %d', '⚠ %d', '⬥ ok']
+let g:ale_php_phpcs_standard = 'Drupal'
 
 " ----- xolox/vim-easytags settings -----
 " Where to look for tags files
@@ -412,17 +372,16 @@ autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-"autocmd FileType php setlocal omnifunc=phpcomplete_extended#CompletePHP
+autocmd FileType php setlocal omnifunc=phpcomplete_extended#CompletePHP
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-
-autocmd FileType php setlocal omnifunc=phpcomplete#CompletePHP
+"autocmd FileType php setlocal omnifunc=phpcomplete#CompletePHP
 set completeopt=longest,menuone
 
 " Enable heavy omni completion.
-if !exists('g:neocomplete#sources#omni#input_patterns')
-  let g:neocomplete#sources#omni#input_patterns = {}
-endif
-let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
+"if !exists('g:neocomplete#sources#omni#input_patterns')
+  "let g:neocomplete#sources#omni#input_patterns = {}
+"endif
+"let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
 
 " END Neocomplete
 
@@ -457,10 +416,6 @@ let g:vimsyn_folding='af'
 let g:xml_syntax_folding = 1
 let g:php_folding = 1
 
-" ------ Dash ------
-:nmap <silent> <leader>d <Plug>DashSearch
-
-
 " ------ lightline ------
 set laststatus=2
 set noshowmode
@@ -468,7 +423,11 @@ set noshowmode
 let g:lightline = {
       \ 'mode_map': { 'c': 'NORMAL' },
       \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ] ]
+      \  'left': [
+      \    ['mode', 'paste'],
+      \    ['readonly', 'filename', 'modified'],
+      \    ['ale'],
+      \  ]
       \ },
       \ 'component_function': {
       \   'modified': 'LightLineModified',
@@ -479,7 +438,7 @@ let g:lightline = {
       \   'filetype': 'LightLineFiletype',
       \   'fileencoding': 'LightLineFileencoding',
       \   'mode': 'LightLineMode',
-      \   'error': 'ALE',
+      \   'ale': 'ALEStatus'
       \ },
       \ 'separator': { 'left': '⮀', 'right': '⮂' },
       \ 'subseparator': { 'left': '⮁', 'right': '⮃' }
@@ -526,7 +485,7 @@ function! LightLineMode()
   return winwidth(0) > 60 ? lightline#mode() : ''
 endfunction
 
-function! ALE()
+function! ALEStatus()
   return ALEGetStatusLine()
 endfunction
 
@@ -540,22 +499,53 @@ let vim_markdown_preview_hotkey='<C-m>'
 let g:ag_working_path_mode="r"
 
 " ---- VIMWIKI ----
-nmap <silent> <Leader>d :VimwikiToggleListItem<CR>
+nmap <silent> <Leader>D :VimwikiToggleListItem<CR>
 
 " ---- VDEBUG ----
 if !exists('g:vdebug_options')
-    let g:vdebug_options = {}
+  let g:vdebug_options = {}
 endif
 let g:vdebug_options['port']=8999 " Avoid conflict with FPM on port 9000
 
 " -- php.vim ----
 
-function! PhpSyntaxOverride()
-  hi! def link phpDocTags  phpDefine
-  hi! def link phpDocParam phpType
+"function! PhpSyntaxOverride()
+"hi! def link phpDocTags  phpDefine
+"hi! def link phpDocParam phpType
+"endfunction
+
+"augroup phpSyntaxOverride
+"autocmd!
+"autocmd FileType php call PhpSyntaxOverride()
+"augroup END
+
+" ---- SCSS ----
+function! Scss_comp()
+  " Get the output from sass compiler, attempt to write css to css folder
+  " above.
+  let out = system('sassc ' . shellescape( expand('%:p') ) . ' ' . fnamemodify(expand('%:r'), ':s?scss?css?:p') . '.css')
+  if out == ''
+    echo 'Compiled to ' . fnamemodify(expand('%:r'), ':s?scss?css?:p') . '.css'
+  else
+    echo out
+  endif
+  "call setqflist(out)
 endfunction
 
-augroup phpSyntaxOverride
-  autocmd!
-  autocmd FileType php call PhpSyntaxOverride()
-augroup END
+:command! S call Scss_comp()
+
+
+function! Scss_prettify()
+  " Get the output from sass compiler, attempt to write css to css folder
+  " above.
+  let out = execute('%! sass-convert')
+  if out == ''
+    echo 'Compiled to ' . expand('%:p')
+  "else
+    "echo out
+  endif
+  "call setqflist(out)
+endfunction
+
+:command! P call Scss_prettify()
+
