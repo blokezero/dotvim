@@ -1,171 +1,174 @@
 [submodule "bundle/base16-vim"]
-	path = bundle/base16-vim
+	path = pack/bloke/start/base16-vim
 	url = https://github.com/chriskempson/base16-vim.git
 [submodule "bundle/better-indent-support-for-php-with-html"]
-	path = bundle/better-indent-support-for-php-with-html
+	path = pack/bloke/start/better-indent-support-for-php-with-html
 	url = https://github.com/captbaritone/better-indent-support-for-php-with-html.git
 [submodule "bundle/closetag.vim"]
-	path = bundle/closetag.vim
+	path = pack/bloke/start/closetag.vim
 	url = https://github.com/docunext/closetag.vim.git
 [submodule "bundle/context_filetype.vim"]
-	path = bundle/context_filetype.vim
+	path = pack/bloke/start/context_filetype.vim
 	url = https://github.com/Shougo/context_filetype.vim.git
 [submodule "bundle/dash.vim"]
-	path = bundle/dash.vim
+	path = pack/bloke/start/dash.vim
 	url = https://github.com/rizzatti/dash.vim.git
 [submodule "bundle/delimitMate"]
-	path = bundle/delimitMate
+	path = pack/bloke/start/delimitMate
 	url = https://github.com/Raimondi/delimitMate.git
 [submodule "bundle/drupal-snippets"]
-	path = bundle/drupal-snippets
+	path = pack/bloke/start/drupal-snippets
 	url = https://github.com/technosophos/drupal-snippets.git
 [submodule "bundle/greplace.vim"]
-	path = bundle/greplace.vim
+	path = pack/bloke/start/greplace.vim
 	url = https://github.com/vim-scripts/greplace.vim.git
 [submodule "bundle/javascript-libraries-syntax.vim"]
-	path = bundle/javascript-libraries-syntax.vim
+	path = pack/bloke/start/javascript-libraries-syntax.vim
 	url = https://github.com/othree/javascript-libraries-syntax.vim.git
 [submodule "bundle/MatchTagAlways"]
-	path = bundle/MatchTagAlways
+	path = pack/bloke/start/MatchTagAlways
 	url = https://github.com/Valloric/MatchTagAlways.git
 [submodule "bundle/neocomplete.vim"]
-	path = bundle/neocomplete.vim
+	path = pack/bloke/start/neocomplete.vim
 	url = https://github.com/Shougo/neocomplete.vim.git
 [submodule "bundle/neosnippet-snippets"]
-	path = bundle/neosnippet-snippets
+	path = pack/bloke/start/neosnippet-snippets
 	url = https://github.com/Shougo/neosnippet-snippets.git
 [submodule "bundle/neosnippet.vim"]
-	path = bundle/neosnippet.vim
+	path = pack/bloke/start/neosnippet.vim
 	url = https://github.com/Shougo/neosnippet.vim.git
 [submodule "bundle/nerdcommenter"]
-	path = bundle/nerdcommenter
+	path = pack/bloke/start/nerdcommenter
 	url = https://github.com/scrooloose/nerdcommenter.git
 [submodule "bundle/papercolor-theme"]
 	path = bundle/papercolor-theme
 	url = https://github.com/NLKNguyen/papercolor-theme.git
 [submodule "bundle/PHP-Indenting-for-VIm"]
-	path = bundle/PHP-Indenting-for-VIm
+	path = pack/bloke/start/PHP-Indenting-for-VIm
 	url = https://github.com/2072/PHP-Indenting-for-VIm.git
 [submodule "bundle/php.vim-html-enhanced"]
-	path = bundle/php.vim-html-enhanced
+	path = pack/bloke/start/php.vim-html-enhanced
 	url = https://github.com/vim-scripts/php.vim-html-enhanced.git
 [submodule "bundle/scss-syntax.vim"]
-	path = bundle/scss-syntax.vim
+	path = pack/bloke/start/scss-syntax.vim
 	url = https://github.com/cakebaker/scss-syntax.vim.git
 [submodule "bundle/tagbar"]
-	path = bundle/tagbar
+	path = pack/bloke/start/tagbar
 	url = https://github.com/majutsushi/tagbar
 [submodule "bundle/vim-bufferline"]
-	path = bundle/vim-bufferline
+	path = pack/bloke/start/vim-bufferline
 	url = https://github.com/bling/vim-bufferline
 [submodule "bundle/vim-colors-solarized"]
-	path = bundle/vim-colors-solarized
+	path = pack/bloke/start/vim-colors-solarized
 	url = https://github.com/altercation/vim-colors-solarized.git
 [submodule "bundle/vim-css-color"]
-	path = bundle/vim-css-color
+	path = pack/bloke/start/vim-css-color
 	url = https://github.com/ap/vim-css-color.git
 [submodule "bundle/vim-css3-syntax"]
-	path = bundle/vim-css3-syntax
+	path = pack/bloke/start/vim-css3-syntax
 	url = https://github.com/hail2u/vim-css3-syntax.git
 [submodule "bundle/vim-easytags"]
-	path = bundle/vim-easytags
+	path = pack/bloke/start/vim-easytags
 	url = https://github.com/xolox/vim-easytags.git
 [submodule "bundle/vim-expand-region"]
-	path = bundle/vim-expand-region
+	path = pack/bloke/start/vim-expand-region
 	url = https://github.com/terryma/vim-expand-region.git
 [submodule "bundle/vim-fugitive"]
-	path = bundle/vim-fugitive
+	path = pack/bloke/start/vim-fugitive
 	url = https://github.com/tpope/vim-fugitive.git
 [submodule "bundle/vim-gitgutter"]
-	path = bundle/vim-gitgutter
+	path = pack/bloke/start/vim-gitgutter
 	url = https://github.com/airblade/vim-gitgutter.git
 [submodule "bundle/vim-less"]
-	path = bundle/vim-less
+	path = pack/bloke/start/vim-less
 	url = https://github.com/groenewege/vim-less
 [submodule "bundle/vim-markdown"]
-	path = bundle/vim-markdown
+	path = pack/bloke/start/vim-markdown
 	url = https://github.com/plasticboy/vim-markdown.git
 [submodule "bundle/vim-misc"]
-	path = bundle/vim-misc
+	path = pack/bloke/start/vim-misc
 	url = https://github.com/xolox/vim-misc.git
 [submodule "bundle/vim-snippets"]
-	path = bundle/vim-snippets
+	path = pack/bloke/start/vim-snippets
 	url = https://github.com/honza/vim-snippets.git
 [submodule "bundle/vim-surround"]
-	path = bundle/vim-surround
+	path = pack/bloke/start/vim-surround
 	url = https://github.com/tpope/vim-surround.git
 [submodule "bundle/vim-syntax-for-PHP"]
-	path = bundle/vim-syntax-for-PHP
+	path = pack/bloke/start/vim-syntax-for-PHP
 	url = https://github.com/2072/vim-syntax-for-PHP.git
 [submodule "bundle/vim-tagbar-css"]
-	path = bundle/vim-tagbar-css
+	path = pack/bloke/start/vim-tagbar-css
 	url = https://github.com/mtscout6/vim-tagbar-css.git
-[submodule "bundle/vim-tmux-navigator"]
-	path = bundle/vim-tmux-navigator
-	url = https://github.com/christoomey/vim-tmux-navigator.git
 [submodule "bundle/vim-twig"]
-	path = bundle/vim-twig
+	path = pack/bloke/start/vim-twig
 	url = https://github.com/evidens/vim-twig.git
 [submodule "bundle/bundle/drupalvim"]
-	path = bundle/drupalvim
+	path = pack/bloke/start/drupalvim
 	url = http://git.drupal.org/project/vimrc.git
 [submodule "bundle/vdebug"]
-	path = bundle/vdebug
+	path = pack/bloke/start/vdebug
 	url = https://github.com/joonty/vdebug.git
 [submodule "bundle/vim-markdown-preview"]
-	path = bundle/vim-markdown-preview
+	path = pack/bloke/start/vim-markdown-preview
 	url = https://github.com/JamshedVesuna/vim-markdown-preview.git
 [submodule "bundle/vimfiler.vim"]
 	path = bundle/vimfiler.vim
 	url = https://github.com/Shougo/vimfiler.vim.git
 [submodule "bundle/FastFold.vim"]
-	path = bundle/FastFold.vim
+	path = pack/bloke/start/FastFold.vim
 	url = https://github.com/Konfekt/FastFold.git
 [submodule "bundle/vim-vinegar"]
-	path = bundle/vim-vinegar
+	path = pack/bloke/start/vim-vinegar
 	url = https://github.com/tpope/vim-vinegar.git
 [submodule "bundle/ctrlp.vim"]
-	path = bundle/ctrlp.vim
+	path = pack/bloke/start/ctrlp.vim
 	url = https://github.com/ctrlpvim/ctrlp.vim.git
 [submodule "bundle/vim-obsession"]
-	path = bundle/vim-obsession
+	path = pack/bloke/start/vim-obsession
 	url = https://github.com/tpope/vim-obsession.git
 [submodule "bundle/vitality.vim"]
-	path = bundle/vitality.vim
+	path = pack/bloke/start/vitality.vim
 	url = https://github.com/sjl/vitality.vim.git
 [submodule "bundle/ag.vim"]
-	path = bundle/ag.vim
+	path = pack/bloke/start/ag.vim
 	url = https://github.com/rking/ag.vim.git
 [submodule "bundle/lightline.vim"]
-	path = bundle/lightline.vim
+	path = pack/bloke/start/lightline.vim
 	url = https://github.com/itchyny/lightline.vim
 [submodule "bundle/twig.vim"]
-	path = bundle/twig.vim
+	path = pack/bloke/start/twig.vim
 	url = https://github.com/nelsyeung/twig.vim.git
 [submodule "bundle/bundle/phpcomplete.vim"]
 	path = bundle/bundle/phpcomplete.vim
 	url = git://github.com/shawncplus/phpcomplete.vim.git
 [submodule "bundle/vifm.vim"]
-	path = bundle/vifm.vim
+	path = pack/bloke/start/vifm.vim
 	url = https://github.com/vifm/vifm.vim.git
 [submodule "bundle/vimwiki.git"]
-	path = bundle/vimwiki.git
+	path = pack/bloke/start/vimwiki.git
 	url = https://github.com/vimwiki/vimwiki.git
 [submodule "bundle/SimpylFold"]
-	path = bundle/SimpylFold
+	path = pack/bloke/start/SimpylFold
 	url = https://github.com/tmhedberg/SimpylFold.git
 [submodule "bundle/IndentPython.vim"]
-	path = bundle/IndentPython.vim
+	path = pack/bloke/start/IndentPython.vim
 	url = https://github.com/vim-scripts/indentpython.vim.git
 [submodule "bundle/php.vim"]
-	path = bundle/php.vim
+	path = pack/bloke/start/php.vim
 	url = https://github.com/StanAngeloff/php.vim.git
 [submodule "bundle/python-mode.git"]
-	path = bundle/python-mode.git
+	path = pack/bloke/start/python-mode.git
 	url = https://github.com/klen/python-mode.git
 [submodule "bundle/indentLine.git"]
-	path = bundle/indentLine.git
+	path = pack/bloke/start/indentLine.git
 	url = https://github.com/Yggdroot/indentLine.git
 [submodule "bundle/ale"]
-	path = bundle/ale
+	path = pack/bloke/start/ale
 	url = https://github.com/w0rp/ale.git
+[submodule "pack/bloke/start/sass-compile.vim"]
+	path = pack/bloke/start/sass-compile.vim
+	url = https://github.com/AtsushiM/sass-compile.vim.git
+[submodule "pack/bloke/start/neoformat.vim"]
+	path = pack/bloke/start/neoformat.vim
+	url = https://github.com/sbdchd/neoformat.git
