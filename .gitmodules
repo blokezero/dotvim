@@ -37,9 +37,6 @@
 [submodule "bundle/neosnippet.vim"]
 	path = pack/bloke/start/neosnippet.vim
 	url = https://github.com/Shougo/neosnippet.vim.git
-[submodule "bundle/nerdcommenter"]
-	path = pack/bloke/start/nerdcommenter
-	url = https://github.com/scrooloose/nerdcommenter.git
 [submodule "bundle/papercolor-theme"]
 	path = bundle/papercolor-theme
 	url = https://github.com/NLKNguyen/papercolor-theme.git
@@ -172,3 +169,15 @@
 [submodule "pack/bloke/start/neoformat.vim"]
 	path = pack/bloke/start/neoformat.vim
 	url = https://github.com/sbdchd/neoformat.git
+[submodule "pack/bloke/start/unimpaired.vim"]
+	path = pack/bloke/start/unimpaired.vim
+	url = https://github.com/tpope/vim-unimpaired.git
+[submodule "pack/bloke/start/vim-dust"]
+	path = pack/bloke/start/vim-dust
+	url = https://github.com/mirlord/vim-dust.git
+[submodule "pack/bloke/start/VimExplorer"]
+	path = pack/bloke/start/VimExplorer
+	url = https://github.com/mbbill/VimExplorer.git
+[submodule "pack/bloke/start/vim-commentary"]
+	path = pack/bloke/start/vim-commentary
+	url = https://github.com/tpope/vim-commentary.git

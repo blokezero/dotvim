@@ -1,11 +1,11 @@
 " BASICS
 
-" Use vim defaults.
-set timeout timeoutlen=1500
 set t_Co=256
 set background=dark
 colorscheme base16-solarized-dark
 let base16colorspace=256
+set timeoutlen=1000
+set ttimeoutlen=0
 
 " Tabs, Spaces and Indentation.
 set expandtab     " Use spaces for tabs.
@@ -64,9 +64,11 @@ set title " Set the title in the console.
 :imap <F1> <ESC>
 
 " Use mouse
-if has('mouse')
+if !has('nvim')
+  if has('mouse')
     set mouse=a
     set ttymouse=xterm2
+  endif
 endif
 
 " FASTER REDRAWING
@@ -95,7 +97,7 @@ set invlist
 set listchars=tab:▸\ ,eol:¬,trail:⋅,extends:❯,precedes:❮
 highlight SpecialKey ctermbg=none " make the highlighting of tabs less annoying
 set showbreak=↪
-nmap <leader>l :set list!<cr>
+nmap <leader>I :set list!<cr>
 
 " TRY TO FIX DISSAPEARING ARROWKEYS
 if &term[:4] == "xterm" || &term[:5] == 'screen' || &term[:3] == 'rxvt'
@@ -135,6 +137,11 @@ let g:netrw_list_hide= netrw_gitignore#Hide()
 " Open new split panes to right and bottom, which feels more natural
 set splitbelow
 set splitright
+" Use CTRL + MV to switch splits.
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
 
 " SEARCH
 set hlsearch
@@ -155,10 +162,11 @@ if executable('ag')
   set grepprg=ag\ --nogroup\ --nocolor
 
   " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-  let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
+  "let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
 
   " ag is fast enough that CtrlP doesn't need to cache
-  let g:ctrlp_use_caching = 0
+  "let g:ctrlp_use_caching = 0
+  let g:ctrlp_max_files=0
 endif
 
 " FILE TYPE
@@ -182,9 +190,6 @@ au BufNewFile,BufRead *.py
 
 let python_highlight_all=1
 
-" PHP
-autocmd FileType php set omnifunc=phpcomplete#CompletePHP
-
 " Autocommand settings
 augroup alex
   autocmd!
@@ -200,7 +205,7 @@ augroup alex
   " Set syntax highlighting for specific file types
   autocmd BufRead,BufNewFile *.md set filetype=markdown
   autocmd BufNewFile,BufRead *.scss set ft=scss
-  autocmd BufNewFile,BufRead *.{module,install} set filetype=php.drupal
+  autocmd BufNewFile,BufRead *.{module,install,drush} set filetype=php.drupal
 
   " Enable spellchecking for Markdown
   autocmd FileType markdown setlocal spell
@@ -273,6 +278,7 @@ let g:ale_lint_on_text_changed = 1
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 let g:ale_statusline_format = ['⨉ %d', '⚠ %d', '⬥ ok']
 let g:ale_php_phpcs_standard = 'Drupal'
+let g:ale_javascript_eslint_use_global = 1
 
 " ----- xolox/vim-easytags settings -----
 " Where to look for tags files
@@ -341,6 +347,10 @@ if !exists('g:neocomplete#keyword_patterns')
   let g:neocomplete#keyword_patterns = {}
 endif
 let g:neocomplete#keyword_patterns['default'] = '\h\w*'
+if !exists('g:neocomplete#sources#omni#input_patterns')
+  let g:neocomplete#sources#omni#input_patterns = {}
+endif
+let g:neocomplete#sources#omni#input_patterns.php = '\h\w*\|[^. \t]->\%(\h\w*\)\?\|\h\w*::\%(\h\w*\)\?'
 
 " Plugin key-mappings.
 inoremap <expr><C-g>     neocomplete#undo_completion()
@@ -372,16 +382,8 @@ autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-autocmd FileType php setlocal omnifunc=phpcomplete_extended#CompletePHP
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-"autocmd FileType php setlocal omnifunc=phpcomplete#CompletePHP
 set completeopt=longest,menuone
-
-" Enable heavy omni completion.
-"if !exists('g:neocomplete#sources#omni#input_patterns')
-  "let g:neocomplete#sources#omni#input_patterns = {}
-"endif
-"let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
 
 " END Neocomplete
 
@@ -393,12 +395,12 @@ xmap <C-k>     <Plug>(neosnippet_expand_target)
 
 " SuperTab like snippets behavior.
 imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-\ "\<Plug>(neosnippet_expand_or_jump)"
-\: pumvisible() ? "\<C-n>" : "\<TAB>"
+      \ "\<Plug>(neosnippet_expand_or_jump)"
+      \: pumvisible() ? "\<C-n>" : "\<TAB>"
 
 xmap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-\ "\<Plug>(neosnippet_expand_or_jump)"
-\: "\>"
+      \ "\<Plug>(neosnippet_expand_or_jump)"
+      \: "\>"
 
 " Delete markers on leaving insert mode
 autocmd InsertLeave * NeoSnippetClearMarkers
@@ -507,45 +509,4 @@ if !exists('g:vdebug_options')
 endif
 let g:vdebug_options['port']=8999 " Avoid conflict with FPM on port 9000
 
-" -- php.vim ----
-
-"function! PhpSyntaxOverride()
-"hi! def link phpDocTags  phpDefine
-"hi! def link phpDocParam phpType
-"endfunction
-
-"augroup phpSyntaxOverride
-"autocmd!
-"autocmd FileType php call PhpSyntaxOverride()
-"augroup END
-
-" ---- SCSS ----
-function! Scss_comp()
-  " Get the output from sass compiler, attempt to write css to css folder
-  " above.
-  let out = system('sassc ' . shellescape( expand('%:p') ) . ' ' . fnamemodify(expand('%:r'), ':s?scss?css?:p') . '.css')
-  if out == ''
-    echo 'Compiled to ' . fnamemodify(expand('%:r'), ':s?scss?css?:p') . '.css'
-  else
-    echo out
-  endif
-  "call setqflist(out)
-endfunction
-
-:command! S call Scss_comp()
-
-
-function! Scss_prettify()
-  " Get the output from sass compiler, attempt to write css to css folder
-  " above.
-  let out = execute('%! sass-convert')
-  if out == ''
-    echo 'Compiled to ' . expand('%:p')
-  "else
-    "echo out
-  endif
-  "call setqflist(out)
-endfunction
-
-:command! P call Scss_prettify()
-
+let g:vim_json_syntax_conceal = 0
