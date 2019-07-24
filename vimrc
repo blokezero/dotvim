@@ -304,8 +304,8 @@ let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %
 
 
 " ----- w0rp/ale linter settings ------
-nmap <silent> <leader>j <Plug>(ale_previous_wrap)
-nmap <silent> <leader>k <Plug>(ale_next_wrap)
+nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+nmap <silent> <C-j> <Plug>(ale_next_wrap)
 
 let g:ale_sign_error = '●'
 let g:ale_sign_warning = 'w'
