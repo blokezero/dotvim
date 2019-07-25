@@ -1,3 +1,6 @@
+# Disclaimer
+This may not work, keys maybe mapped wrongly, plug-ins may have missing dependencies.
+
 # Start
 Type the following into the console.
 ```bash
