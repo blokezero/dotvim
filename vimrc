@@ -28,8 +28,8 @@ Plug 'tpope/vim-fugitive'
 Plug 'honza/vim-snippets'
 Plug 'epilande/vim-react-snippets'
 Plug 'sirver/UltiSnips'
-Plug 'garbas/vim-snipmate' | Plug 'MarcWeber/vim-addon-mw-utils' | Plug 'tomtom/tlib_vim'
-Plug 'technosophos/drupal-snippets'
+
+Plug 'https://git.drupalcode.org/project/vimrc.git', { 'branch': '7.x-1.x', 'rtp': 'bundle/vim-plugin-for-drupal'  }
 
 " Linters
 Plug 'w0rp/ale'
@@ -254,6 +254,9 @@ imap <C-l> <Plug>(coc-snippets-expand)
 " Use <C-j> for select text for visual placeholder of snippet.
 vmap <C-j> <Plug>(coc-snippets-select)"
 let g:coc_force_debug = 1
+
+" ----- Ultisnips -----
+let g:UltiSnipsUsePythonVersion = 3
 
 " ----- FZF -----
 let g:fzf_layout = { 'down': '~40%' }
@@ -512,3 +515,26 @@ nmap <Leader>pf <Plug>(Prettier)
 
 " Use xmllint to indent.
 au FileType xml setlocal equalprg=xmllint\ --format\ --recover\ -\ 2>/dev/null
+
+" UltiSnips Drupal snippets breaks without the following:
+"
+" this is well known Filename found in snipmate (and the other engines), but
+" rewritten and documented :)
+"
+" optional arg1: string in which to replace '$1' by filename with extension
+"   and path dropped. Defaults to $1
+" optional arg2: return this value if buffer has no filename
+"  But why not use the template in this case, too?
+"  Doesn't make sense to me
+fun! Filename(...)
+  let template = get(a:000, 0, "$1")
+  let arg2 = get(a:000, 1, "")
+
+  let basename = expand('%:t:r')
+
+  if basename == ''
+    return arg2
+  else
+    return substitute(template, '$1', basename, 'g')
+  endif
+endf
