@@ -6,3 +6,6 @@ function! PHP_prettify()
 endfunction
 
 :command! P call PHP_prettify()
+
+" Set tab to 2 spaces.
+set tabstop=4 softtabstop=0 expandtab shiftwidth=2 smarttab
