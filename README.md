@@ -10,5 +10,9 @@ ln -s ~/.vim/vimrc ~/.vimrc
 ```
 # Plug-ins
 Managed by [June Gunn Vim Plug](https://github.com/junegunn/vim-plug)
+
+Follow install instructions there and then.
+
+
 `:PlugInstall` as Vim command to load
 
