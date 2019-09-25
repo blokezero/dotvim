@@ -173,7 +173,7 @@ set nobackup
 " set wildmenu
 " set wildmode=full
 " filetype plugin indent on
-" autocmd Rc BufWinEnter * set mouse=
+" autocmd Rc BufWinEnter * set mouse=a
 
 " Space setting
 
@@ -187,54 +187,10 @@ set shiftwidth=2
 
 " Appearance
 
-" syntax on
-" set backspace=indent,eol,start
-" set colorcolumn=80
-" set completeopt=menu
-" set cursorline
 set hlsearch
-" set inccommand=nosplit
 set incsearch
-" set number
-" " set relativenumber
-" set shortmess=a
-" set showcmd
-" set showmatch
-" set showmode
-" set splitbelow
-" set splitright
-" set wrap
-
-" "" keymaps
 
 let g:mapleader = "\<space>"
-
-" nnoremap <expr> j v:count ? 'j' : 'gj'
-" nnoremap <expr> k v:count ? 'k' : 'gk'
-" nnoremap gj j
-" nnoremap gk k
-" nnoremap <esc><esc> :nohlsearch<cr>
-" nnoremap Y y$
-
-
-" " plugin settings
-
-"" auto-pairs
-
-let g:AutoPairsMapCh = 0
-let g:AutoPairsMapCR = 0
-
-
-"" fzf
-
-nnoremap ; :Buffers<cr>
-nnoremap <leader>c :History:<cr>
-nnoremap <leader>f :Files<cr>
-nnoremap <leader>g :GFiles<cr>
-nnoremap <leader>h :History<cr>
-nnoremap <leader>l :Lines<cr>
-nnoremap <leader>m :Maps<cr>
-nnoremap <leader>r :Ag<cr>
 
 " Colorscheme
 
@@ -245,6 +201,32 @@ highlight NonText     ctermbg=none
 highlight EndOfBuffer ctermbg=none
 highlight VertSplit   cterm=none ctermfg=240 ctermbg=240
 
+" Set file type for Drupal module files.
+" Drupal *.module and *.install files.
+augroup module
+  autocmd BufNewFile,BufRead *.{module,install,drush,theme,view,profile} set filetype=php.drupal
+  autocmd BufNewFile,BufRead *.info.yml setlocal filetype=yaml.drupal
+  autocmd BufRead,BufNewFile *.{test,inc} set filetype=php.drupal
+augroup END
+
+" Plugin settings
+
+" ----- auto-pairs -----
+let g:AutoPairsMapCh = 0
+let g:AutoPairsMapCR = 0
+
+
+" ----- fzf -----
+nnoremap ; :Buffers<cr>
+nnoremap <leader>c :History:<cr>
+nnoremap <leader>f :Files<cr>
+nnoremap <leader>g :GFiles<cr>
+nnoremap <leader>h :History<cr>
+nnoremap <leader>l :Lines<cr>
+nnoremap <leader>m :Maps<cr>
+nnoremap <leader>r :Ag<cr>
+
+
 
 " ----- COC ------
 " https://github.com/neoclide/coc.nvim
@@ -254,9 +236,6 @@ imap <C-l> <Plug>(coc-snippets-expand)
 " Use <C-j> for select text for visual placeholder of snippet.
 vmap <C-j> <Plug>(coc-snippets-select)"
 let g:coc_force_debug = 1
-
-" ----- Ultisnips -----
-let g:UltiSnipsUsePythonVersion = 3
 
 " ----- FZF -----
 let g:fzf_layout = { 'down': '~40%' }
@@ -489,11 +468,6 @@ augroup dirvish_config
         \ gh :silent keeppatterns g@\v/\.[^\/]+/?$@d _<cr>
 augroup END
 
-augroup custom
-  autocmd BufNewFile,BufRead *.{module,install,drush,theme,view,profile} set filetype=php.drupal
-  autocmd BufNewFile,BufRead *.info.yml setlocal filetype=yaml.drupal
-  autocmd BufRead,BufNewFile *.{test,inc} set filetype=phpo
-augroup END
 " ---- Signify ---
 let g:signify_vcs_list = [ 'git' ]
 let g:signify_realtime = 1
