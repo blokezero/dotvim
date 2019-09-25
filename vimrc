@@ -41,7 +41,7 @@ Plug 'ryanoasis/vim-devicons'
 " File
 Plug 'justinmk/vim-dirvish'
 Plug 'pbrisbin/vim-mkdir'
-" Plug 'kristijanhusak/vim-dirvish-git'
+Plug 'kristijanhusak/vim-dirvish-git'
 Plug 'prettier/vim-prettier', {
       \ 'do': 'yarn install',
       \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'] }
@@ -237,6 +237,9 @@ imap <C-l> <Plug>(coc-snippets-expand)
 vmap <C-j> <Plug>(coc-snippets-select)"
 let g:coc_force_debug = 1
 
+" ----- Ultisnips -----
+" let g:UltiSnipsUsePythonVersion = 3
+
 " ----- FZF -----
 let g:fzf_layout = { 'down': '~40%' }
 autocmd! FileType fzf
@@ -344,8 +347,8 @@ let g:lightline = {
       \   'cocstatus': 'coc#status',
       \   'currentfunction': 'CocCurrentFunction'
       \ },
-      \ 'separator': { 'left': '', 'right': '' },
-      \ 'subseparator': { 'left': '', 'right': '' }
+      \ 'separator': { 'left': '▶', 'right': '◀' },
+      \ 'subseparator': { 'left': '▷', 'right': '◁' }
       \ }
 
 

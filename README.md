@@ -1,3 +1,6 @@
+# Disclaimer
+This may not work, keys maybe mapped wrongly, plug-ins may have missing dependencies.
+
 # Start
 Type the following into the console.
 ```bash
@@ -7,5 +10,9 @@ ln -s ~/.vim/vimrc ~/.vimrc
 ```
 # Plug-ins
 Managed by [June Gunn Vim Plug](https://github.com/junegunn/vim-plug)
+
+Follow install instructions there and then.
+
+
 `:PlugInstall` as Vim command to load
 
