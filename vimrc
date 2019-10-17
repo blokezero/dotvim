@@ -5,6 +5,8 @@ call plug#begin('~/.vim/plugged')
 Plug 'jacoborus/tender.vim'
 Plug 'skielbasa/vim-material-monokai'
 Plug 'cocopon/iceberg.vim'
+Plug 'lifepillar/vim-solarized8'
+
 " Vim helpers
 Plug 'tpope/vim-eunuch'
 Plug 'farmergreg/vim-lastplace'
@@ -42,9 +44,6 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'justinmk/vim-dirvish'
 Plug 'pbrisbin/vim-mkdir'
 Plug 'kristijanhusak/vim-dirvish-git'
-Plug 'prettier/vim-prettier', {
-      \ 'do': 'yarn install',
-      \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'] }
 
 " Fuzzy finder
 Plug 'junegunn/fzf', { 'do': './install --bin' }
@@ -54,6 +53,9 @@ Plug 'junegunn/fzf.vim'
 Plug 'sheerun/vim-polyglot'
 Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 
+Plug 'prettier/vim-prettier', {
+      \ 'do': 'yarn install',
+      \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'] }
 call plug#end()
 
 " VIM SETTINGS
@@ -78,8 +80,11 @@ scriptencoding utf-8
 set nocompatible
 
 " Theme
-colorscheme tender
+colorscheme solarized8_high
 highlight clear SignColumn
+
+let g:solarized_extra_hi_groups=1
+let g:solarized_visibility="high"
 
 " TOGGLE INVISIBLE CHARACTERS
 set invlist
@@ -185,21 +190,12 @@ set shiftwidth=2
 " set smarttab
 " set tabstop=2
 
-" Appearance
+" Custom stuff
 
 set hlsearch
 set incsearch
 
 let g:mapleader = "\<space>"
-
-" Colorscheme
-
-colorscheme iceberg
-
-highlight Normal      ctermbg=none
-highlight NonText     ctermbg=none
-highlight EndOfBuffer ctermbg=none
-highlight VertSplit   cterm=none ctermfg=240 ctermbg=240
 
 " Set file type for Drupal module files.
 " Drupal *.module and *.install files.
