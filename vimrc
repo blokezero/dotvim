@@ -301,7 +301,7 @@ let g:ale_lint_on_save = 1
 let g:ale_lint_on_text_changed = 1
 " let g:ale_lint_delay = 750
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
-let g:ale_statusline_format = ['⨉ %d', '⚠ %d', '⬥ ok']
+let g:ale_statusline_format = ['⨉ %d', '⚠ %d', '✅ ok']
 let g:ale_php_phpcs_standard = 'Drupal'
 
 let g:ale_linters = {'jsx': ['eslint'], 'javascript': ['eslint', 'flow']}
@@ -310,11 +310,14 @@ highlight clear SignColumn
 let g:ale_linters = {
       \   'html': ['htmlhint', 'prettier'],
       \}
+
+" Bind F8 to fixing problems with ALE
+nmap <F8> <Plug>(ale_fix)
 let g:ale_fixers = {
-      \   'javascript': [
-      \       'eslint',
-      \   ],
-      \}
+\   '*': ['remove_trailing_lines', 'trim_whitespace'],
+\   'javascript': ['eslint'],
+\   'scss': ['prettier', 'stylelint'],
+\}
 
 " ------ lightline ------
 set laststatus=2
