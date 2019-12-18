@@ -22,14 +22,17 @@ Plug 'tpope/vim-repeat'
 Plug 'ntpeters/vim-better-whitespace'
 " Plug 'maxbrunsfeld/vim-yankstack'
 
+" TMUX integration.
+Plug 'christoomey/vim-tmux-navigator'
+
 " Git
 Plug 'mhinz/vim-signify'
 Plug 'tpope/vim-fugitive'
-"
+
 " Snippets
 Plug 'honza/vim-snippets'
 Plug 'epilande/vim-react-snippets'
-Plug 'sirver/UltiSnips'
+" Plug 'sirver/UltiSnips'
 
 Plug 'https://git.drupalcode.org/project/vimrc.git', { 'branch': '7.x-1.x', 'rtp': 'bundle/vim-plugin-for-drupal'  }
 
