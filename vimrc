@@ -307,12 +307,14 @@ let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 let g:ale_statusline_format = ['⨉ %d', '⚠ %d', '✅ ok']
 let g:ale_php_phpcs_standard = 'Drupal'
 
-let g:ale_linters = {'jsx': ['eslint'], 'javascript': ['eslint', 'flow']}
+let g:ale_linters = {
+    \  'jsx': ['eslint'],
+    \  'javascript': ['eslint', 'flow'],
+    \  'php': ['phpcs'],
+    \  'html': ['htmlhint', 'prettier']
+\}
 let g:ale_linter_aliases = {'jsx': 'css'}
 highlight clear SignColumn
-let g:ale_linters = {
-      \   'html': ['htmlhint', 'prettier'],
-      \}
 
 " Bind F8 to fixing problems with ALE
 nmap <F8> <Plug>(ale_fix)
@@ -320,6 +322,7 @@ let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
 \   'javascript': ['eslint'],
 \   'scss': ['prettier', 'stylelint'],
+\   'php': ['phpcbf']
 \}
 
 " ------ lightline ------
