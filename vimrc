@@ -20,6 +20,7 @@ Plug 'tpope/vim-obsession'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-repeat'
 Plug 'ntpeters/vim-better-whitespace'
+Plug 'Asheq/close-buffers.vim'
 " Plug 'maxbrunsfeld/vim-yankstack'
 
 " TMUX integration.
@@ -46,7 +47,7 @@ Plug 'ryanoasis/vim-devicons'
 " File
 Plug 'justinmk/vim-dirvish'
 Plug 'pbrisbin/vim-mkdir'
-Plug 'kristijanhusak/vim-dirvish-git'
+" Plug 'kristijanhusak/vim-dirvish-git'
 
 " Fuzzy finder
 Plug 'junegunn/fzf', { 'do': './install --bin' }
@@ -54,7 +55,30 @@ Plug 'junegunn/fzf.vim'
 
 " Language
 Plug 'sheerun/vim-polyglot'
-Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
+
+" Language server protocol
+Plug 'prabirshrestha/vim-lsp'
+Plug 'mattn/vim-lsp-settings'
+
+" Autocomplete
+Plug 'Shougo/deoplete.nvim'
+Plug 'lighttiger2505/deoplete-vim-lsp'
+" Support plugins for Deoplete on Vim8
+Plug 'roxma/nvim-yarp'
+Plug 'roxma/vim-hug-neovim-rpc'
+
+
+" Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
+
+" Plug 'autozimu/LanguageClient-neovim', {
+"     \ 'branch': 'next',
+"     \ 'do': 'bash install.sh',
+"     \ }
+
+" Plug 'roxma/LanguageServer-php-neovim',  {'do': 'composer install && composer run-script parse-stubs'}
+
+" Plug 'phpactor/phpactor', {'for': 'php', 'do': 'composer install --no-dev -o'}
+" Plug 'elythyr/phpactor-mappings'
 
 Plug 'prettier/vim-prettier', {
       \ 'do': 'yarn install',
@@ -88,6 +112,10 @@ highlight clear SignColumn
 
 let g:solarized_extra_hi_groups=1
 let g:solarized_visibility="high"
+
+" PYTHON3
+set pyxversion=3
+set pythonthreehome=
 
 " TOGGLE INVISIBLE CHARACTERS
 set invlist
@@ -217,7 +245,6 @@ let g:AutoPairsMapCR = 0
 
 " ----- fzf -----
 nnoremap ; :Buffers<cr>
-nnoremap <leader>c :History:<cr>
 nnoremap <leader>f :Files<cr>
 nnoremap <leader>g :GFiles<cr>
 nnoremap <leader>h :History<cr>
@@ -225,19 +252,76 @@ nnoremap <leader>l :Lines<cr>
 nnoremap <leader>m :Maps<cr>
 nnoremap <leader>r :Ag<cr>
 
+function! RipgrepFzf(query, fullscreen)
+  let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case %s || true'
+  let initial_command = printf(command_fmt, shellescape(a:query))
+  let reload_command = printf(command_fmt, '{q}')
+  let spec = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
+  call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
+endfunction
+
+command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
+
+set shortmess-=F
 
 
 " ----- COC ------
 " https://github.com/neoclide/coc.nvim
 " Use <C-l> for trigger snippet expand.
-imap <C-l> <Plug>(coc-snippets-expand)
+" imap <C-l> <Plug>(coc-snippets-expand)
 "
 " Use <C-j> for select text for visual placeholder of snippet.
-vmap <C-j> <Plug>(coc-snippets-select)"
-let g:coc_force_debug = 1
+" vmap <C-j> <Plug>(coc-snippets-select)"
+" let g:coc_force_debug = 1
+
+" You will have bad experience for diagnostic messages when it's default 4000.
+set updatetime=300
+
+" don't give |ins-completion-menu| messages.
+set shortmess+=c
+
+" Remap keys for gotos
+" nmap <silent> gd <Plug>(coc-definition)
+" nmap <silent> gy <Plug>(coc-type-definition)
+" nmap <silent> gi <Plug>(coc-implementation)
+" nmap <silent> gr <Plug>(coc-references)
+
+" Use K to show documentation in preview window
+" nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+" function! s:show_documentation()
+"   if (index(['vim','help'], &filetype) >= 0)
+"     execute 'h '.expand('<cword>')
+"   else
+"     call CocAction('doHover')
+"   endif
+" endfunction
+
+" Highlight symbol under cursor on CursorHold
+" autocmd CursorHold * silent call CocActionAsync('highlight')
+
+" Required for operations modifying multiple buffers like rename.
+set hidden
+
+" let g:LanguageClient_serverCommands = {
+"     \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
+"     \ 'javascript': ['/usr/local/bin/javascript-typescript-stdio'],
+"     \ 'javascript.jsx': ['tcp://127.0.0.1:2089'],
+"     \ 'python': ['/usr/local/bin/pyls'],
+"     \ 'ruby': ['~/.rbenv/shims/solargraph', 'stdio'],
+"     \ }
+" let g:LanguageClient_serverCommands = {
+"     \ 'php.drupal': ['/home/asullivan/.composer/vendor/felixfbecker/language-server/bin/php-language-server.php', 'php'],
+"     \ 'php': ['/home/asullivan/.composer/vendor/felixfbecker/language-server/bin/php-language-server.php', 'php'],
+"     \ }
+
+" nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
+" nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
+" nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
+
 
 " ----- Ultisnips -----
-" let g:UltiSnipsUsePythonVersion = 3
+let g:UltiSnipsUsePythonVersion = 3
 
 " ----- FZF -----
 let g:fzf_layout = { 'down': '~40%' }
@@ -324,6 +408,9 @@ let g:ale_fixers = {
 \   'scss': ['prettier', 'stylelint'],
 \   'php': ['phpcbf']
 \}
+
+" Use deoplete.
+let g:deoplete#enable_at_startup = 1
 
 " ------ lightline ------
 set laststatus=2
@@ -520,3 +607,22 @@ fun! Filename(...)
     return substitute(template, '$1', basename, 'g')
   endif
 endf
+
+" Required for operations modifying multiple buffers like rename.
+" set hidden
+
+" let g:LanguageClient_serverCommands = {
+"     \ 'php.drupal': ['/home/asullivan/.vim/plugged/LanguageServer-php-neovim/vendor/bin/php-language-server.php'] ,
+"     \ }
+
+" let g:LanguageClient_serverCommands = {
+"     \ 'php.drupal': ['intelephense', '--stdio'],
+"     \ }
+" let g:LanguageClient_loggingFile = '/tmp/lc.log'
+" " let g:LanguageClient_serverCommands = {}
+" nnoremap <F5> :call LanguageClient_contextMenu()<CR>
+" " Or map each action separately
+" nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
+" nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
+" nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
+
